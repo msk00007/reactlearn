@@ -1,47 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
+import { useEffect } from "react";
+import axios from "axios";
 import "../css/Content.css";
 import Card from "./Card";
 
 const Content = () => {
-  const myArr = [
-    {
-      id: 1,
-      title: "Mobile",
-      description: "This is a mobile",
-      price: 10000,
-    },
-    {
-      id: 2,
-      title: "Laptop",
-      description: "This is a laptop",
-      price: 50000,
-    },
-    {
-      id: 3,
-      title: "Tablet",
-      description: "This is a tablet",
-      price: 15000,
-    },
-    {
-      id: 4,
-      title: "Smartwatch",
-      description: "This is a smartwatch",
-      price: 5000,
-    },
-  ];
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    axios.get("https://fakestoreapi.com/products").then((response) => {
+      setData(response.data);
+    });
+  }, []);
 
   return (
-    <div className="main">
-      {myArr.map((product) => {
-        return (
+    <div className="content-main">
+      {data.length > 0 &&
+        data.map((item) => (
           <Card
-            key={product.id}
-            title={product.title}
-            description={product.description}
-            price={product.price}
+            key={item.id}
+            title={item.title}
+            description={item.description}
+            price={item.price}
+            image={item.image}
           />
-        );
-      })}
+        ))}
     </div>
   );
 };

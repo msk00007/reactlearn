@@ -1,13 +1,15 @@
+import React, { useState } from "react";
 import "./App.css";
-import Content from "./components/Content";
-import Footer from "./components/Footer";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
+import AppRoutes from "./routes";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   return (
     <>
-      <Header />
-      <Content />
+      <Header isLoggedIn={isLoggedIn} />
+      <AppRoutes isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       <Footer />
     </>
   );

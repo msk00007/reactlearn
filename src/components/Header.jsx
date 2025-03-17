@@ -1,14 +1,37 @@
 import "../css/Header.css";
 import myImg from "../../public/mobile.jpeg";
-const Header = () => {
+import { Link } from "react-router-dom";
+const Header = ({ isLoggedIn }) => {
   return (
     <>
       <div className="header">
         <img src={myImg} alt="My Image" />
         <ul>
-          <li>Home</li>
-          <li>About</li>
-          <li>Services</li>
+          {isLoggedIn ? (
+            <>
+              <li>
+                <Link to="/logout">Logout</Link>
+              </li>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/dashboard">Dashboard</Link>
+              </li>
+              <li>
+                <Link to="/services">Services</Link>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <Link to="/login">Login</Link>
+              </li>
+              <li>
+                <Link to="/register">Register</Link>
+              </li>
+            </>
+          )}
         </ul>
       </div>
     </>
