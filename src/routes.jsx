@@ -19,7 +19,7 @@ const AppRoutes = ({ setIsLoggedIn }) => {
         element={<Logout setIsLoggedIn={setIsLoggedIn} />}
       />
       <Route path="/register" element={<Register />} />
-      <Route path="/services" element={<Example />} />
+      <Route path="/services" element={<Example />} />x
       <Route path="*" element={<Notfound />} />
     </Routes>
   );
